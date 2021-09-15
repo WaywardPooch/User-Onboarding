@@ -6,9 +6,9 @@ div.card {
   margin: 2rem;
   max-width: 50rem;
   min-width: 30rem;
-}
-div.card-picture {
+  justify-content: center;
   padding: 0.8rem;
+  min-height: 10rem;
 }
 div.card-info {
   align-items: center;
@@ -22,6 +22,7 @@ p {
   width: 100%;
 }
 h3 {
+  text-transform: capitalize;
   font-size: 3rem;
 }
 p {
