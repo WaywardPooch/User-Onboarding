@@ -1,7 +1,13 @@
+// Import libraries
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/App/App.js";
 import reportWebVitals from "./reportWebVitals";
+
+// Import Components
+import App from "./components/App/App.js";
+
+// Import styles
+import "./reset.css";
 
 ReactDOM.render(
   <React.StrictMode>

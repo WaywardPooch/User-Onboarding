@@ -1,12 +1,14 @@
 // Import Components
 import Header from "../Header/Header";
+import Form from "../Form/Form";
 // Import Styles
-import "./App.css";
+import "./App.less";
 
 const App = () => {
   return (
     <div className="App">
       <Header />
+      <Form />
     </div>
   );
 };
