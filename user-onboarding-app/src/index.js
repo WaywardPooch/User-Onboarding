@@ -3,11 +3,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 
-// Import Components
-import App from "./components/App/App.js";
-
 // Import styles
 import "./reset.css";
+
+// Import Components
+import App from "./components/App/App.js";
 
 ReactDOM.render(
   <React.StrictMode>
