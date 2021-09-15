@@ -1,15 +1,25 @@
 div.card {
   background-color: white;
+  border-radius: 7px;
   box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.2);
   display: flex;
-  max-width: 40rem;
   margin: 2rem;
+  max-width: 50rem;
+  min-width: 30rem;
+}
+div.card-picture {
+  padding: 0.8rem;
 }
 div.card-info {
-  display: flex;
-  justify-content: center;
-  flex-flow: row wrap;
   align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+h3,
+p {
+  text-align: center;
+  width: 100%;
 }
 h3 {
   font-size: 3rem;

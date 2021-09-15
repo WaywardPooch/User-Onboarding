@@ -81,7 +81,8 @@ const App = () => {
   const submitForm = () => {
     // Create new user object (trim whitespace)
     const newUser = {
-      name: formValues.name.trim(),
+      first_name: formValues.firstName.trim(),
+      last_name: formValues.lastName.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
     };
@@ -115,6 +116,8 @@ const App = () => {
         updateInput={updateInput}
         submitForm={submitForm}
         isDisabled={formSubmitDisabled}
+        formValues={formValues}
+        formErrors={formErrors}
       />
       {userList.length > 0 ? <UserList userList={userList} /> : <p>LOADING</p>}
     </div>
