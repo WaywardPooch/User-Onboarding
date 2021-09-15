@@ -2,16 +2,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import * as yup from "yup";
+
 // Import Styles
 import "./App.css";
+
 // Import Data
 import schema from "../../validation/formSchema";
 import initialFormValues from "../Form/initialFormValues.json";
 import initialFormErrors from "../Form/initialFormErrors.json";
-import initialSiteUsers from "../Form/initialSiteUsers.json";
+
 // Import Components
 import Header from "../Header/Header";
 import Form from "../Form/Form";
+import UserList from "../UserList/UserList";
 
 // Declare Variables
 const initialSubmitDisabled = true;
@@ -19,7 +22,7 @@ const initialSubmitDisabled = true;
 // Declare Class
 const App = () => {
   // ========== STATES
-  const [userList, setUserList] = useState(initialSiteUsers);
+  const [userList, setUserList] = useState([]);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [formSubmitDisabled, setFormSubmitDisabled] = useState(
@@ -32,7 +35,7 @@ const App = () => {
       .get("https://reqres.in/api/users")
       .then((res) => {
         // Update the user list from API
-        setUserList(res.data);
+        setUserList(res.data.data);
       })
       .catch((err) => {
         // Log error if user list cannot be updated
@@ -108,7 +111,12 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      <Form />
+      <Form
+        updateInput={updateInput}
+        submitForm={submitForm}
+        isDisabled={formSubmitDisabled}
+      />
+      {userList.length > 0 ? <UserList userList={userList} /> : <p>LOADING</p>}
     </div>
   );
 };
