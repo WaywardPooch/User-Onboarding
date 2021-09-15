@@ -1,0 +1,19 @@
+div.card {
+  background-color: white;
+  box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.2);
+  display: flex;
+  max-width: 40rem;
+  margin: 2rem;
+}
+div.card-info {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  align-items: center;
+}
+h3 {
+  font-size: 3rem;
+}
+p {
+  font-size: 1.5rem;
+}

@@ -6,7 +6,11 @@ const Form = () => {
     <div className="form-section">
       <form>
         <label>
-          Name:
+          First Name:
+          <input type="text" />
+        </label>
+        <label>
+          Last Name:
           <input type="text" />
         </label>
         <label>
