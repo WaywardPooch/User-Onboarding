@@ -27,7 +27,7 @@ const App = () => {
   );
 
   // ========== HELPER METHODS
-  const getUsers = () => {
+  const getUserList = () => {
     axios
       .get("https://reqres.in/api/users")
       .then((res) => {
@@ -39,9 +39,10 @@ const App = () => {
         console.error(err);
       });
   };
+
   const postNewUser = (newUser) => {
     axios
-      .post("https://reqres.in/api/users")
+      .post("https://reqres.in/api/users", newUser)
       .then((res) => {
         // Add new user to user list
         setUserList([res.data, ...userList]);
@@ -66,12 +67,14 @@ const App = () => {
         setFormErrors({ ...formErrors, [inputName]: err.errors[0] })
       );
   };
+
   const updateInput = (inputName, inputValue) => {
     // Check if input is valid
     validateInput(inputName, inputValue);
     // Update the form values accordingly
     setFormValues({ ...formValues, [inputName]: inputValue });
   };
+
   const submitForm = () => {
     // Create new user object (trim whitespace)
     const newUser = {
@@ -82,6 +85,24 @@ const App = () => {
     // Add new user object to user list
     postNewUser(newUser);
   };
+
+  // ========== SIDE EFFECTS
+
+  // Get user list after site first loads
+  useEffect(() => {
+    getUserList();
+  }, []);
+
+  // When form values change...
+  useEffect(() => {
+    schema
+      // ...check if they are valid inputs...
+      .isValid(formValues)
+      .then((valid) => {
+        // ...and allow submission if they are.
+        setFormSubmitDisabled(!valid);
+      });
+  }, [formValues]);
 
   // ========== MARKUP
   return (
