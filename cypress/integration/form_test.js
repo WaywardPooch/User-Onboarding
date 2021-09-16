@@ -38,5 +38,38 @@ describe("User Onboarding App", () => {
     acceptTOSCheckbox().should("exist");
     submitButton().should("exist");
   });
+
+  // Test if inputs are functional
+  describe("Input testing", () => {
+    it("submit button starts disabled", () => {
+      submitButton().should("be.disabled");
+    });
+
+    it("can type inside each text field", () => {
+      firstNameInput()
+        .should("have.value", "")
+        .type("Johnny")
+        .should("have.value", "Johnny");
+
+      lastNameInput()
+        .should("have.value", "")
+        .type("Silverhand")
+        .should("have.value", "Silverhand");
+
+      emailInput()
+        .should("have.value", "")
+        .type("jsilverhand@cyberpunk.net")
+        .should("have.value", "jsilverhand@cyberpunk.net");
+
+      passwordInput()
+        .should("have.value", "")
+        .type("w3lc0m3_2_N1GHT-C1TY")
+        .should("have.value", "w3lc0m3_2_N1GHT-C1TY");
+    });
+
+    it("can check the 'accept ToS' box", () => {
+      acceptTOSCheckbox().should("not.be.checked").check().should("be.checked");
+    });
+  });
 });
 // DANGER ZONE!
