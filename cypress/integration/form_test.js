@@ -75,11 +75,14 @@ describe("User Onboarding App", () => {
   // Test if form can be submitted
   describe("Submitting information", () => {
     it("submit button enables when input fields are full", () => {
+      // Fill in all inputs
       firstNameInput().type("Johnny");
       lastNameInput().type("Silverhand");
       emailInput().type("jsilverhand@cyberpunk.net");
       passwordInput().type("w3lc0m3_2_N1GHT-C1TY");
       acceptTOSCheckbox().check();
+
+      // Check if submit button is enabled
       submitButton().should("not.be.disabled");
     });
 
@@ -96,6 +99,16 @@ describe("User Onboarding App", () => {
 
       // Check if the new user is present
       cy.contains("Johnny Silverhand");
+    });
+  });
+
+  // Test for form validation
+  describe("Form Validation Errors", () => {
+    it("invalid first name produces error", () => {
+      firstNameInput().type("a");
+      cy.contains("First Name requires at least 2 letters");
+      firstNameInput().type("{selectall}{backspace}");
+      cy.contains("A first name is required!");
     });
   });
 });
