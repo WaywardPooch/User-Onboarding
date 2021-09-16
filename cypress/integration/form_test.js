@@ -39,8 +39,8 @@ describe("User Onboarding App", () => {
     submitButton().should("exist");
   });
 
-  // Test if inputs are functional
-  describe("Input testing", () => {
+  // Test if input fields functional
+  describe("Filling out the form", () => {
     it("submit button starts disabled", () => {
       submitButton().should("be.disabled");
     });
@@ -71,5 +71,31 @@ describe("User Onboarding App", () => {
       acceptTOSCheckbox().should("not.be.checked").check().should("be.checked");
     });
   });
+
+  // Test if form can be submitted
+  describe("Submitting information", () => {
+    it("submit button enables when input fields are full", () => {
+      firstNameInput().type("Johnny");
+      lastNameInput().type("Silverhand");
+      emailInput().type("jsilverhand@cyberpunk.net");
+      passwordInput().type("w3lc0m3_2_N1GHT-C1TY");
+      acceptTOSCheckbox().check();
+      submitButton().should("not.be.disabled");
+    });
+
+    it("can submit the form", () => {
+      // Input form data
+      firstNameInput().type("Johnny");
+      lastNameInput().type("Silverhand");
+      emailInput().type("jsilverhand@cyberpunk.net");
+      passwordInput().type("w3lc0m3_2_N1GHT-C1TY");
+      acceptTOSCheckbox().check();
+
+      // Click the submit button
+      submitButton().click();
+
+      // Check if the new user is present
+      cy.contains("Johnny Silverhand");
+    });
+  });
 });
-// DANGER ZONE!
