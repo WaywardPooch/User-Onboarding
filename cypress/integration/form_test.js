@@ -110,5 +110,35 @@ describe("User Onboarding App", () => {
       firstNameInput().type("{selectall}{backspace}");
       cy.contains("A first name is required!");
     });
+
+    it("invalid last name produces error", () => {
+      lastNameInput().type("a");
+      cy.contains("Last Name requires at least 2 letters");
+      lastNameInput().type("{selectall}{backspace}");
+      cy.contains("A last name is required!");
+    });
+
+    it("invalid email produces error", () => {
+      emailInput().type("a");
+      cy.contains("Not a real email address, man!");
+      emailInput().type("{selectall}{backspace}");
+      cy.contains("You need an email, bro!");
+    });
+
+    it("invalid password produces error", () => {
+      passwordInput().type("a");
+      cy.contains("What kind of a password's that?! 8+ digits, please!");
+      passwordInput().type("{selectall}{backspace}");
+      cy.contains("No password?! You're insane; add one!");
+    });
+
+    it("refusal to accept terms of service produces error", () => {
+      // Check the box
+      acceptTOSCheckbox().click();
+      // Uncheck the box
+      acceptTOSCheckbox().click();
+      // Look for an error message
+      cy.contains("You must accept our terms of service");
+    });
   });
 });
